@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartRoute – Route Planner with Your Own Data</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="wrap">
+<h1 class="full">SmartRoute<small>Anand city and nearby spots: enter your own places, roads (up to 60 km each) and traffic, then compare routes</small></h1>
+
+<div class="col">
+ <div class="card" id="search">
+  <div class="fld" style="margin-bottom:4px"><input type="text" id="q" list="pl" placeholder="Search a route or place, e.g. Anand to Nadiad" autocomplete="off" aria-label="Search route or place"><datalist id="pl"></datalist></div><p class="hint" id="qm" style="margin:0 0 8px" hidden></p>
+  <div class="fld"><span style="background:var(--acc)">A</span><input type="text" id="from" placeholder="Search start location" autocomplete="off" aria-label="Start location"></div>
+  <div class="fld"><span style="background:var(--r)">B</span><input type="text" id="to" placeholder="Search destination" autocomplete="off" aria-label="Destination"><div id="sug" hidden></div></div>
+  <div class="row">
+   <div class="seg" id="algo" aria-label="Algorithm"><button data-v="astar">A*</button><button data-v="dijkstra">Dijkstra</button><button data-v="bf">Bellman-Ford</button></div>
+   <div class="seg" id="mode" aria-label="Optimize for"><button data-v="fast">Fastest</button><button data-v="short">Shortest</button></div>
+  </div>
+  <div class="row">
+   <label class="dep">Leave at<input type="time" id="dep"></label>
+   <button class="btn" id="now" style="align-self:end">Now</button>
+   <label style="display:flex;gap:6px;align-items:center;font-size:13px;color:var(--ink);align-self:end;padding-bottom:8px"><input type="checkbox" id="auto" checked style="width:auto"> Auto traffic</label><button class="btn sw" id="swap" style="align-self:end">Swap A/B</button>
+  </div>
+ </div>
+
+ <div class="card" id="mapcard">
+  <div class="row between" style="margin:0 0 8px"><h2 style="margin:0">Map</h2>
+   <span class="row" style="margin:0">
+    <button class="btn" id="fc" hidden>Show full map</button><button class="btn" id="zi" aria-label="Zoom in">+</button><button class="btn" id="zo" aria-label="Zoom out">&minus;</button><button class="btn" id="mv" aria-pressed="false">Move places</button>
+    <label style="display:flex;gap:6px;align-items:center;font-size:13px;color:var(--ink)"><input type="checkbox" id="tr" checked style="width:auto"> Traffic</label>
+   </span></div>
+  <svg id="map" viewBox="0 0 400 300" role="img" aria-label="Road map"></svg>
+  <div class="leg"><span><i style="background:var(--g)"></i>Free</span><span><i style="background:var(--a)"></i>Slow</span><span><i style="background:var(--r)"></i>Heavy</span><span><i style="background:var(--x)"></i>Closed</span></div>
+  <p class="hint" id="maphint"></p>
+  <div id="insp"></div>
+ </div>
+</div>
+
+<div class="col">
+ <div class="card" id="opts"></div>
+ <div class="card" id="steps"></div>
+</div>
+
+<div class="card full" id="reach"></div>
+<div class="card full" id="data"></div>
+<div class="card full" id="lab"></div>
+<div class="card" id="cmp"></div>
+<div class="card" id="alerts"></div>
+</div>
+
+<script src="script.js"></script>
+</body></html>
